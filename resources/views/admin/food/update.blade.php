@@ -7,17 +7,15 @@
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-header text-center">{{ __('Submit update ')}}{{ $com }}</div>
-                    @if(session()->has('msg'))
-                        <b style="color: green">{{session()->get('msg')}}</b>
-                        <br>
-                    @endif
                     <div class="card-body">
-                        <form method="POST" action="{{route('admin.detail.update',['id'=>$details['id']])}}" enctype="multipart/form-data">
+                        <form method="POST" action="{{route('admin.food.update',['id'=>$food['id']])}}" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group row">
                                 <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }} {{ $com }}</label>
+
                                 <div class="col-md-6">
-                                    <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ $details['name'] }}" autocomplete="name" placeholder="{{ $details['name'] }}" autofocus required>
+                                    <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ $food['name'] }}" autocomplete="name" placeholder="{{ $food['name'] }}" autofocus required>
+
                                     @error('name')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $validator }}</strong>
@@ -26,10 +24,25 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Weight') }} {{ $com }}</label>
+                                <label for="detail" class="col-md-4 col-form-label text-md-right">{{ __('Detail') }} {{ $com }}</label>
+
                                 <div class="col-md-6">
-                                    <input id="name" type="text" class="form-control @error('weight') is-invalid @enderror" name="weight" value="{{ $details['weight'] }}" autocomplete="weight" placeholder="{{ $details['weight'] }}" autofocus required>
-                                    @error('weight')
+                                    <input id="detail" type="text" class="form-control @error('detail') is-invalid @enderror" name="detail" value="{{ $food['detail'] }}" autocomplete="detail" placeholder="{{ $food['detail'] }}" autofocus required>
+
+                                    @error('detail')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $validator }}</strong>
+                                    </span>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="price" class="col-md-4 col-form-label text-md-right">{{ __('Price') }} {{ $com }}</label>
+
+                                <div class="col-md-6">
+                                    <input id="price" type="number" class="form-control @error('price') is-invalid @enderror" name="price" value="{{ $food['price'] }}" autocomplete="price" placeholder="{{ $food['price'] }}" autofocus required>
+
+                                    @error('price')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $validator }}</strong>
                                     </span>

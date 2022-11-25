@@ -31,16 +31,16 @@
                     Species
                 </a>
             </li>
-            <li>
-                <a href="#">
+            <li class="<?=($com == 'food')?"active":""?>">
+                <a href="{{ route('admin.food') }}">
                     <i class="glyphicon glyphicon-paperclip"></i>
-                    FAQ
+                    Food
                 </a>
             </li>
-            <li>
-                <a href="#">
+            <li class="<?=($com == 'blog')?"active":""?>">
+                <a href="{{ route('admin.blog') }}">
                     <i class="glyphicon glyphicon-send"></i>
-                    Contact
+                    Blog
                 </a>
             </li>
         </ul>

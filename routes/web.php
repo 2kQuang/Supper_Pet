@@ -7,6 +7,8 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Petcontroller;
 use App\Http\Controllers\Speciescontroller;
 use App\Http\Controllers\PetdetailController;
+use App\Http\Controllers\FoodController;
+use App\Http\Controllers\BlogController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -26,8 +28,9 @@ Auth::routes();
 Route::get('/', [HomeController::class, 'index'])->name('login');
 
 
-Route::get('/home', [HomeController::class, 'home'])->name('user.home');
-
+Route::prefix('home')->group(function () {
+    Route::get('', [HomeController::class, 'home'])->name('user.home');
+});
 
 // admin
 Route::prefix('admin')->group(function () {
@@ -52,6 +55,21 @@ Route::prefix('admin')->group(function () {
         Route::post('update/{id}',[Speciescontroller::class,'update'])->name('admin.species.update');
         Route::get('delete/{id}',[Speciescontroller::class,'destroy'])->name('admin.species.delete');
     });
-
+    Route::prefix('food')->group(function () {
+        Route::get('', [FoodController::class, 'index'])->name('admin.food');
+        Route::get('create', [FoodController::class, 'create'])->name('admin.food.create');
+        Route::post('store', [FoodController::class, 'store'])->name('admin.food.store');
+        Route::get('edit/{id}', [FoodController::class, 'edit'])->name('admin.food.edit');
+        Route::post('update/{id}',[FoodController::class,'update'])->name('admin.food.update');
+        Route::get('delete/{id}',[FoodController::class,'destroy'])->name('admin.food.delete');
+    });
+    Route::prefix('blog')->group(function () {
+        Route::get('', [BlogController::class, 'index'])->name('admin.blog');
+        Route::get('create', [BlogController::class, 'create'])->name('admin.blog.create');
+        Route::post('store', [BlogController::class, 'store'])->name('admin.blog.store');
+        Route::get('edit/{id}', [BlogController::class, 'edit'])->name('admin.blog.edit');
+        Route::post('update/{id}',[BlogController::class,'update'])->name('admin.blog.update');
+        Route::get('delete/{id}',[BlogController::class,'destroy'])->name('admin.blog.delete');
+    });
 
 });
