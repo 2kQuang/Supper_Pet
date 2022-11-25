@@ -30,14 +30,13 @@ Route::get('/', [HomeController::class, 'index'])->name('login');
 
 Route::prefix('home')->group(function () {
     Route::get('', [HomeController::class, 'home'])->name('user.home');
-    Route::view('about', 'user.pages.about')->name('user.about');
-    Route::view('services', 'user.pages.services')->name('user.services');
-    Route::view('price', 'user.pages.price')->name('user.price');
-    Route::view('booking', 'user.pages.booking')->name('user.booking');
-    Route::view('blog', 'user.pages.blog')->name('user.blog');
-    Route::view('single', 'user.pages.single')->name('user.single');
-    Route::view('contact', 'user.pages.contact')->name('user.contact');
-
+    // Route::view('about', 'user.pages.about')->name('user.about');
+    // Route::view('services', 'user.pages.services')->name('user.services');
+    // Route::view('price', 'user.pages.price')->name('user.price');
+    // Route::view('booking', 'user.pages.booking')->name('user.booking');
+    // Route::view('blog', 'user.pages.blog')->name('user.blog');
+    // Route::view('single', 'user.pages.single')->name('user.single');
+    // Route::view('contact', 'user.pages.contact')->name('user.contact');
 });
 
 // admin

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 14, 2022 at 05:08 PM
+-- Generation Time: Nov 25, 2022 at 03:39 PM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.1.10
 
@@ -20,6 +20,18 @@ SET time_zone = "+00:00";
 --
 -- Database: `supper_pet`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `about`
+--
+
+CREATE TABLE `about` (
+  `id` int(11) NOT NULL,
+  `content` text DEFAULT NULL,
+  `images` text DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -41,20 +53,8 @@ CREATE TABLE `action` (
 CREATE TABLE `blog` (
   `id` int(11) NOT NULL,
   `title` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-  `content` varchar(2000) COLLATE utf8_unicode_ci NOT NULL,
-  `id_blog_category` int(11) NOT NULL,
-  `time_up` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `blog_category`
---
-
-CREATE TABLE `blog_category` (
-  `id` int(11) NOT NULL,
-  `category` varchar(50) COLLATE utf8_unicode_ci NOT NULL
+  `content` text COLLATE utf8_unicode_ci DEFAULT NULL,
+  `time_up` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
@@ -85,6 +85,13 @@ CREATE TABLE `food` (
   `detail` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   `price` int(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `food`
+--
+
+INSERT INTO `food` (`id`, `name`, `detail`, `price`) VALUES
+(1, 'Quang1', '123', 123);
 
 -- --------------------------------------------------------
 
@@ -159,9 +166,9 @@ CREATE TABLE `pet` (
 
 CREATE TABLE `pet_detail` (
   `id` int(11) NOT NULL,
-  `id_pet` int(11) NOT NULL,
-  `name` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
-  `weight` double NOT NULL
+  `id_pet` int(11) DEFAULT NULL,
+  `name` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `weight` double DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
@@ -209,6 +216,13 @@ CREATE TABLE `species` (
   `species` varchar(50) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+--
+-- Dumping data for table `species`
+--
+
+INSERT INTO `species` (`id`, `species`) VALUES
+(3, 'test');
+
 -- --------------------------------------------------------
 
 --
@@ -218,7 +232,7 @@ CREATE TABLE `species` (
 CREATE TABLE `users` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `avatar` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `avatar` text COLLATE utf8mb4_unicode_ci DEFAULT 'images/avatar/no-avatar.jpg',
   `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
   `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -238,6 +252,12 @@ INSERT INTO `users` (`id`, `name`, `avatar`, `email`, `email_verified_at`, `pass
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `about`
+--
+ALTER TABLE `about`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `action`
@@ -328,6 +348,12 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT for table `about`
+--
+ALTER TABLE `about`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `action`
 --
 ALTER TABLE `action`
@@ -337,7 +363,7 @@ ALTER TABLE `action`
 -- AUTO_INCREMENT for table `blog`
 --
 ALTER TABLE `blog`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -349,7 +375,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `food`
 --
 ALTER TABLE `food`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `migrations`
@@ -367,13 +393,13 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT for table `pet`
 --
 ALTER TABLE `pet`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `pet_detail`
 --
 ALTER TABLE `pet_detail`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `role`
@@ -391,7 +417,7 @@ ALTER TABLE `service`
 -- AUTO_INCREMENT for table `species`
 --
 ALTER TABLE `species`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `users`
