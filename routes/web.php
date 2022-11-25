@@ -9,6 +9,7 @@ use App\Http\Controllers\Speciescontroller;
 use App\Http\Controllers\PetdetailController;
 use App\Http\Controllers\FoodController;
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\AboutController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -30,6 +31,9 @@ Route::get('/', [HomeController::class, 'index'])->name('login');
 
 Route::prefix('home')->group(function () {
     Route::get('', [HomeController::class, 'home'])->name('user.home');
+    Route::get('about', [AboutController::class, 'show'])->name('user.about');
+
+
     // Route::view('about', 'user.pages.about')->name('user.about');
     // Route::view('services', 'user.pages.services')->name('user.services');
     // Route::view('price', 'user.pages.price')->name('user.price');
@@ -78,5 +82,7 @@ Route::prefix('admin')->group(function () {
         Route::post('update/{id}',[BlogController::class,'update'])->name('admin.blog.update');
         Route::get('delete/{id}',[BlogController::class,'destroy'])->name('admin.blog.delete');
     });
-
+    Route::prefix('about')->group(function () {
+        Route::get('', [AboutController::class, 'index'])->name('admin.about');
+    });
 });

@@ -17,14 +17,27 @@
                     <i class="glyphicon glyphicon-briefcase"></i>
                     Pet
                 </a>
-                {{-- <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false">
+            </li>
+
+           <li class="<?=($com == 'pages')?"active":""?>">
+                <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false">
                     <i class="glyphicon glyphicon-duplicate"></i>
                     Pages
                 </a>
-                <ul class="collapse list-unstyled" id="pageSubmenu">
+                <?php if (!empty($list)) {
+                    $in = 'in';
+                }else {
+                    $in = "";
+                }
+                
+                
+                ?>
+                <ul class="collapse list-unstyled <?=$in?>" id="pageSubmenu">
+                    <li class="page <?=$in?>"><a href="{{ route('admin.about') }}">About</a></li>
                     <li><a href="#">Page 1</a></li>
-                </ul> --}}
-            </li>
+                </ul>
+           </li>
+
             <li class="<?=($com == 'species')?"active":""?>">
                 <a href="{{route('admin.species')}}">
                     <i class="glyphicon glyphicon-paperclip"></i>
