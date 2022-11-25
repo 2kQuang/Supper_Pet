@@ -1,16 +1,51 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    @include('user.css')
+@extends('user.master')
+@section('content_user')
 
-</head>
-<body>
-   
+    <!-- Carousel Start -->
+    @include('user.layouts.carousel')
+    <!-- Carousel End -->
 
-    @include('user.js')
-</body>
-</html>
+
+    <!-- Booking Start -->
+   @include('user.layouts.booking')
+    <!-- Booking Start -->
+
+
+    <!-- About Start -->
+   @include('user.layouts.about')
+    <!-- About End -->
+
+
+    <!-- Services Start -->
+    @include('user.layouts.services')
+    <!-- Services End -->
+
+
+    <!-- Features Start -->
+    @include('user.layouts.features')
+    <!-- Features End -->
+
+
+    <!-- Pricing Plan Start -->
+    @include('user.layouts.pricing')
+    <!-- Pricing Plan End -->
+
+
+    <!-- Team Start -->
+    @include('user.layouts.team')
+    <!-- Team End -->
+
+
+    <!-- Testimonial Start -->
+    @include('user.layouts.testimonial')
+    <!-- Testimonial End -->
+
+
+    <!-- Blog Start -->
+    @include('user.layouts.blog')
+    <!-- Blog End -->
+
+
+
+
+@endsection
