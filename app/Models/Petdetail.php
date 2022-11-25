@@ -5,10 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Pet extends Model
+class Petdetail extends Model
 {
     use HasFactory;
-    protected $fillable = ['pet','id_species'];
-    protected $table = "pet";
+    protected $fillable = ['id','id_pet','name','weight'];
+    protected $table = "pet_detail";
     public $timestamps = false;
 }

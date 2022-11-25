@@ -1,14 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\Pet;
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Http\Request;
 use App\Models\Species;
-use App\Models\Petdetail;
+use Illuminate\Support\Facades\Validator;
 
+use Illuminate\Http\Request;
 
-class PetController extends Controller
+class SpeciesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,9 +15,8 @@ class PetController extends Controller
      */
     public function index()
     {
-        
-        $Pets = Pet::All();
-        return response()->view('admin.pet.index',['Pets'=>$Pets,'com'=>'pet']);
+        $species = Species::all();
+        return response()->view('admin.species.index',['species'=>$species,'com'=>'species']);
     }
 
     /**
@@ -29,8 +26,7 @@ class PetController extends Controller
      */
     public function create()
     {
-        $species = Species::all();
-        return response()->view('admin.pet.create',['com'=>'pet','species'=>$species]);
+        return response()->view('admin.species.create',['com'=>'species']);
     }
 
     /**
@@ -45,7 +41,6 @@ class PetController extends Controller
             $request->all(),
             [ 
                 'name' => 'required | string | max:255',
-                'species' => 'required | string | max:255',
             ], 
             [ 
                 'required' => ':attribute Do not leave blank',
@@ -55,16 +50,15 @@ class PetController extends Controller
             ] 
         );
         if($validator->fails()){
-            return redirect()->route('admin.pet.create')->withErrors($validator);
+            return redirect()->route('admin.species.create')->withErrors($validator);
         }
         else{
-            $pet = Pet::create([
-                'pet' => $request->input('name'),
-                'id_species' => $request->input('species'),
+            Species::create([
+                'species' => $request->input('name'),
                 
             ]);
             session()->flash('msg', 'The new employee was created successfully!!');
-            return redirect()->route('admin.pet');
+            return redirect()->route('admin.species');
         }
     }
 
@@ -85,12 +79,10 @@ class PetController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id,$id_species)
+    public function edit($id)
     {
-        $speciess = Species::all();
-        $species = Species::where('id','=',$id_species)->first();
-        $pet = Pet::find($id);
-        return response()->view('admin.pet.update',['com'=>'pet','pet'=>$pet,'speciess'=>$speciess,'species'=>$species]);
+        $species = Species::find($id);
+        return response()->view('admin.species.update',['com'=>'species','species'=>$species]);
     }
 
     /**
@@ -102,12 +94,11 @@ class PetController extends Controller
      */
     public function update(Request $request, $id)
     {
-        Pet::where('id',(int)$id)->update([
-            'pet' => $request->input('name'),
-            'id_species' => $request->input('species')
+        Species::where('id',(int)$id)->update([
+            'species' => $request->input('name')
         ]);
         session()->flash('msg', 'Update Successfully!!!!');
-        return redirect()->route('admin.pet');
+        return redirect()->route('admin.species');
     }
 
     /**
@@ -118,8 +109,7 @@ class PetController extends Controller
      */
     public function destroy($id)
     {
-        Petdetail::where('id_pet',$id)->delete();
-        Pet::where('id',$id)->delete();
+        Species::where('id',$id)->delete();
         return redirect()->back();
     }
 }

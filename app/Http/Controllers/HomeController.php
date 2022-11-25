@@ -44,8 +44,10 @@ class HomeController extends Controller
     /** directional (Điều hướng)*/
     public function admin()
     {
+
         if(Auth::user()->role_id == '1' || Auth::user()->role_id=='2'){
-            return response()->view('admin.index');
+
+            return response()->view('admin.index',['com'=>'home']);
         }else{
             return redirect()->route('login');
         }
