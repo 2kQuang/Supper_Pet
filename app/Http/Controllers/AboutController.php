@@ -14,8 +14,7 @@ class AboutController extends Controller
      */
     public function index()
     {
-        $about = About::all();
-        return response()->view('admin.pages.about',['about'=>$about,'com'=>'pages','list'=>'about']);
+        
     }
 
     /**
@@ -56,9 +55,10 @@ class AboutController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit()
     {
-        //
+        $about = About::all();
+        return response()->view('admin.pages.about',['about'=>$about,'com'=>'pages','list'=>'about']);
     }
 
     /**
@@ -68,9 +68,23 @@ class AboutController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request,$id)
     {
-        //
+        About::where('id',(int)$id)->update([
+            'content' => $request->input('content'),
+            'name' => $request->input('name')
+        ]);
+        if(request()->hasFile(key:'images')){
+            $path ="images\about/";
+            $iamges = request()->file(key: 'images');
+            $iamges->move(base_path('public\images\about/'),$iamges->getClientOriginalName());
+            $path = $path . $iamges->getClientOriginalName();
+            About::where('id',(int)$id)->update([
+                'images' => $path,
+            ]);
+        }
+        session()->flash('msg', 'Update Successfully!!!!');
+        return redirect()->back();
     }
 
     /**

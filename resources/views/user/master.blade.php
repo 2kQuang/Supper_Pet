@@ -9,6 +9,7 @@
 
 </head>
 <body> 
+
   <!-- Topbar Start -->
   @include('user.layouts.topbar')
   <!-- Topbar End -->

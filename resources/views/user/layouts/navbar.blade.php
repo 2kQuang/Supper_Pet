@@ -8,7 +8,7 @@
         </button>
         <div class="collapse navbar-collapse justify-content-between px-3" id="navbarCollapse">
             <div class="navbar-nav mr-auto py-0">
-                <a href="{{ route('user.home') }}" class="nav-item nav-link active">Home</a>
+                <a href="{{ route('user.home') }}" class="nav-item nav-link">Home</a>
                 <a href="{{ route('user.about') }}" class="nav-item nav-link">About</a>
                 <a href="{{ route('user.services') }}" class="nav-item nav-link">Service</a>
                 <a href="{{ route('user.price') }}" class="nav-item nav-link">Price</a>

@@ -1,3 +1,14 @@
+<?php 
+use App\Models\About;
+use App\Models\Blog;
+use App\Models\Food;
+use App\Models\Pet;
+use App\Models\Petdetail;
+use App\Models\Species;
+
+$about = About::all();
+
+?>
 @extends('user.master')
 @section('content_user')
 

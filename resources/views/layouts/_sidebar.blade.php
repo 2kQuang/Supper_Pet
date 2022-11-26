@@ -33,7 +33,7 @@
                 
                 ?>
                 <ul class="collapse list-unstyled <?=$in?>" id="pageSubmenu">
-                    <li class="page <?=$in?>"><a href="{{ route('admin.about') }}">About</a></li>
+                    <li class="page <?=$in?>"><a href="{{ route('admin.about.edit') }}">About</a></li>
                     <li><a href="#">Page 1</a></li>
                 </ul>
            </li>

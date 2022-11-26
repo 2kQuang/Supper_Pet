@@ -1,3 +1,10 @@
+<?php 
+use App\Models\Pet;
+$Pets = Pet::select('pet.*','pet_detail.*','species.*')
+->join('pet_detail','pet.id','=','pet_detail.id_pet')
+->join('species','pet.id_species','=','species.id')
+->get();
+?>
 <div class="container-fluid bg-light pt-5 pb-4">
     <div class="container py-5">
         <div class="d-flex flex-column text-center mb-5">
@@ -5,6 +12,31 @@
             <h1 class="display-4 m-0">Choose the <span class="text-primary">Best Price</span></h1>
         </div>
         <div class="row">
+            @forelse($Pets as $key => $value)
+            <div class="col-lg-4 mb-4">
+                <div class="card border-0">
+                    <div class="card-header position-relative border-0 p-0 mb-4">
+                        <img class="card-img-top" src="{{ asset('img/price-1.jpg') }}" alt="">
+                        <div class="position-absolute d-flex flex-column align-items-center justify-content-center w-100 h-100" style="top: 0; left: 0; z-index: 1; background: rgba(0, 0, 0, .5);">
+                            <h3 class="text-primary mb-3">{{ $value['pet'] }}</h3>
+                            <h1 class="display-4 text-white mb-0">
+                                <small class="align-top" style="font-size: 22px; line-height: 45px;">$</small>49<small class="align-bottom" style="font-size: 16px; line-height: 40px;">/ Mo</small>
+                            </h1>
+                        </div>
+                    </div>
+                    <div class="card-body text-center p-0">
+                        <ul class="list-group list-group-flush mb-4">
+                            <li class="list-group-item p-2">{{ $value['name'] }}<i class="fa fa-check text-secondary ml-2"></i></li>
+                            <li class="list-group-item p-2">{{ $value['weight'] }}<i class="fa fa-check text-secondary ml-2"></i></li>
+                            <li class="list-group-item p-2">{{ $value['species'] }}</li>
+                        </ul>
+                    </div>
+                    <div class="card-footer border-0 p-0">
+                        <a href="{{ route('login') }}" class="btn btn-primary btn-block p-3" style="border-radius: 0;">Signup Now</a>
+                    </div>
+                </div>
+            </div>
+            @empty
             <div class="col-lg-4 mb-4">
                 <div class="card border-0">
                     <div class="card-header position-relative border-0 p-0 mb-4">
@@ -77,6 +109,8 @@
                     </div>
                 </div>
             </div>
+            @endforelse
+           
         </div>
     </div>
 </div>
